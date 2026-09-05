@@ -17,17 +17,17 @@ import {
 } from "firebase/firestore";
 import { Customer, Expense } from "../types";
 
-// Firebase configuration from environment variables or sh-traders project defaults
+// Firebase configuration from environment variables or project defaults
 const env = (import.meta as any).env || {};
 
 export const firebaseConfig = {
-  apiKey: env.VITE_FIREBASE_API_KEY || "AIzaSyAfuyjNnW8t2lj_K41ZVLFyyuMKp-oiBNM",
-  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || "hs-traders-7ca2b.firebaseapp.com",
-  projectId: env.VITE_FIREBASE_PROJECT_ID || "hs-traders-7ca2b",
-  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || "hs-traders-7ca2b.firebasestorage.app",
-  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || "470545805653",
-  appId: env.VITE_FIREBASE_APP_ID || "1:470545805653:web:0b525bad6c9526ed2fffdc",
-  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID || "G-CZRW8VB38F"
+  apiKey: env.VITE_FIREBASE_API_KEY || "AIzaSyCsiqvIbdnUJLssbD9nCO4ZyDX9OKHbQhM",
+  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || "hs-traders-5e04c.firebaseapp.com",
+  projectId: env.VITE_FIREBASE_PROJECT_ID || "hs-traders-5e04c",
+  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || "hs-traders-5e04c.firebasestorage.app",
+  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || "270679814494",
+  appId: env.VITE_FIREBASE_APP_ID || "1:270679814494:web:0832e3a24a3a3a8d06dfcf",
+  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID || "G-WXH0P9SMMZ"
 };
 
 // Check if all essential Firebase keys are configured
@@ -40,7 +40,7 @@ export const isFirebaseConfigured = (): boolean => {
 };
 
 export const getFirebaseProjectId = (): string => {
-  return firebaseConfig.projectId || "hs-traders-7ca2b";
+  return firebaseConfig.projectId || "hs-traders-5e04c";
 };
 
 // Lazy initialization of Firebase Client SDK & Analytics
