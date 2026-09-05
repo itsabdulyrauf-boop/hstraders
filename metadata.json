@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Khubaib Installment",
+  "description": "A cross-platform installment management application for recording sales, tracking installment plans, managing customers, and logging payment history.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

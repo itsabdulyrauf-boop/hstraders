@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HS-Traders</title>
+    <script>
+      // Prevent TypeError: Cannot set property fetch of #<Window> which has only a getter
+      // and ensure fetch is safely bound to window to prevent Illegal invocation errors
+      (function() {
+        var originalFetch = window.fetch ? window.fetch.bind(window) : null;
+        var customFetch = originalFetch;
+        var makeSafeFetch = function(fn) {
+          if (typeof fn !== 'function') return fn;
+          return function() {
+            try {
+              return fn.apply(window, arguments);
+            } catch (err) {
+              if (originalFetch) return originalFetch.apply(window, arguments);
+              throw err;
+            }
+          };
+        };
+        try {
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return customFetch; },
+            set: function(val) { customFetch = makeSafeFetch(val); },
+            configurable: true,
+            enumerable: true
+          });
+          window.global = window;
+          if (typeof globalThis !== 'undefined') {
+            globalThis.global = window;
+            try {
+              Object.defineProperty(globalThis, 'fetch', {
+                get: function() { return customFetch; },
+                set: function(val) { customFetch = makeSafeFetch(val); },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e) {}
+          }
+        } catch (err) {
+          console.warn("Could not patch fetch property descriptor:", err);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
